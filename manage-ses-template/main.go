@@ -13,7 +13,7 @@ func main() {
 	ctx := context.TODO()
 
 	// 플래그
-	typePtr := flag.String("type", "get", "AWS SES 템플릿 관리 명령어\nex) create, delete, get, list, update")
+	typePtr := flag.String("type", "", "AWS SES 템플릿 관리 명령어\nex) create, delete, get, list, update, test")
 	// 플래그 분석
 	flag.Parse()
 	// 플래그 확인
@@ -34,13 +34,15 @@ func main() {
 
 		// 템플릿 생성
 		ses.SetTemplate(ctx, name, true)
+		// 알림 출력
+		fmt.Println("템플릿 생성 완료")
 	} else if *typePtr == "delete" {
 		// 삭제하려는 템플릿 이름 입력
 		name := InputValue(*typePtr)
 
 		// 템플릿 삭제
 		ses.DeleteTemplate(ctx, name)
-		// 삭제 알림
+		// 알림 출력
 		fmt.Println("템플릿 삭제 완료")
 	} else if *typePtr == "get" {
 		// 조회하려는 템플릿 이름 입력
@@ -69,6 +71,22 @@ func main() {
 
 		// 템플릿 갱신
 		ses.SetTemplate(ctx, name, false)
+		// 알림 출력
+		fmt.Println("템플릿 갱신 완료")
+	} else if *typePtr == "test" {
+		// 템플릿 이름
+		var templateName string
+		fmt.Print("메일을 보낼 템플릿 이름: ")
+		fmt.Scanf("%s\n", &templateName)
+		// 송신 메일 주소
+		var email string
+		fmt.Print("송신할 이메일 주소: ")
+		fmt.Scanf("%s", &email)
+
+		// 이메일 전송
+		ses.SendEmail(ctx, templateName, email)
+		// 알림 출력
+		fmt.Println("이메일 전송 완료")
 	} else {
 		flag.Usage()
 	}

@@ -66,6 +66,26 @@ func (ses *SES) GetTemplates(ctx context.Context) []string {
 	return list
 }
 
+func (ses *SES) SendEmail(ctx context.Context, templateName string, email string) {
+	// SDK 호출
+	_, err := ses.client.SendEmail(ctx, &sesv2.SendEmailInput{
+		Content: &types.EmailContent{
+			Template: &types.Template{
+				TemplateData: aws.String("{ \"approvalLink\": \"https://www.naver.com\", \"companyName\": \"회사이름\", \"name\": \"사용자이름\" }"),
+				TemplateName: aws.String(templateName),
+			},
+		},
+		Destination: &types.Destination{
+			ToAddresses: []string{email},
+		},
+		FromEmailAddress: aws.String("Plip <contact@plip.kr>"),
+	})
+	// 에러 처리
+	if err != nil {
+		log.Fatalf("[PROCESS ERROR] %v\n", err)
+	}
+}
+
 func (ses *SES) SetTemplate(ctx context.Context, filename string, isCreate bool) {
 	// 템플릿 객체
 	var template Template
@@ -91,7 +111,7 @@ func (ses *SES) SetTemplate(ctx context.Context, filename string, isCreate bool)
 		_, err = ses.client.CreateEmailTemplate(ctx, &sesv2.CreateEmailTemplateInput{
 			TemplateName: aws.String(template.Name),
 			TemplateContent: &types.EmailTemplateContent{
-				Html:    aws.String(template.Subject),
+				Html:    aws.String(template.Html),
 				Subject: aws.String(template.Subject),
 			},
 		})
@@ -103,7 +123,7 @@ func (ses *SES) SetTemplate(ctx context.Context, filename string, isCreate bool)
 		_, err = ses.client.UpdateEmailTemplate(ctx, &sesv2.UpdateEmailTemplateInput{
 			TemplateName: aws.String(template.Name),
 			TemplateContent: &types.EmailTemplateContent{
-				Html:    aws.String(template.Subject),
+				Html:    aws.String(template.Html),
 				Subject: aws.String(template.Subject),
 			},
 		})
