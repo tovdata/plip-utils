@@ -1,99 +1,74 @@
 <!DOCTYPE html>
 <html lang="kr">
   <head>
-    <style>
-      .body {
-        background: #FFFFFF;
-        position: relative;
-        width: 100%;
-      }
-      .btn {
-        background: #4380F9;
-        border-radius: 8px;
-        color: #FFFFFF !important;
-        cursor: pointer;
-        display: inline-block;
-        font-weight: 700;
-        margin-top: 32px;
-        padding: 12px 24px;
-        text-decoration: none;
-      }
-      .card {
-        background: #FFFFFF;
-        border-radius: 12px;
-        font-size: 16px;
-        font-weight: 400;
-        padding: 40px;
-      }
-      .container {
-        background: #F8F9FC;
-        margin: auto;
-        max-width: 512px;
-        padding: 48px;
-        padding-top: 0;
-        text-align: center;
-      }
-      .content {
-        color: #384860;
-        line-height: 1.6;
-        margin: 0;
-      }
-      .divider {
-        border-right: 1px solid #7A7A7A;
-        display: inline;
-        margin: 0 12px;
-      }
-      .footer {
-        color: #9D9D9D;
-        font-size: 14px;
-        font-weight: 400;
-        margin-top: 58px;
-      }
-      .footer > p {
-        margin: 0;
-        margin-bottom: 12px;
-      }
-      .links {
-        color: #7A7A7A;
-        margin: auto;
-      }
-      .links > a {
-        color: #7A7A7A;
-        cursor: pointer;
-        display: inline-block;
-        text-decoration: none;
-      }
-      .title {
-        color: #121A26;
-        font-size: 20px;
-        font-weight: 700;
-        letter-spacing: -0.015em;
-        margin: 0;
-        margin-bottom: 24px;
-      }
-    </style>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
   </head>
-  <body>
-    <div class="body">
-      <div class="container">
-        <div style="margin:auto;padding: 48px 48px 36px 48px;">
-          <img alt="logo" height="29" src="https://www.plip.kr/images/full_logo.png" width="80" />
-        </div>
-        <div class="card">
-          <h2 class="title">회사 가입 승인이 완료되었어요!</h2>
-          <p class="content">{{name}}님의 회사 가입 승인이 완료되었습니다.<br/><b>이제 플립 서비스를 이용하실 수 있어요!</b><br/><b>플립과 함께 올바른 개인정보 관리를 시작해볼까요?</b></p>
-          <a class="btn" href="https://dev.plip.kr/signin" rel="noopener noreferrer" target="_blank">플립 시작하기</a>
-        </div>
-        <div class="footer">
-          <p style="font-weight: 700;">플립 Privacy clip, Plip</p>
-          <p>©2023. TOVDATA Inc. All Rights Reserved.</p>
-          <div class="links">
-            <a href="https://support.plip.kr/3df57cbd-9405-4031-93c8-0965a9b55247" rel="noopener noreferrer" target="_blank">이용약관</a>
-            <div class="divider"></div>
-            <a href="https://plip.kr/privacy-policies/1a0cd93a-cbb6-4750-bf12-fede7adfe4cf.html" rel="noopener noreferrer" style="font-weight: 700;" target="_blank">개인정보처리방침</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <body style="background-color: #FFFFFF; position: relative; width: 100%">
+    <table border="0" cellpadding="0" cellspacing="0" style="background-color: #F8F9FC; font-family: Pretendard, arial, sans-serif; font-size: 16px; font-weight: 400; margin: auto; padding: 0 48px 48px 48px;">
+      <thead>
+        <tr>
+          <th style="padding: 40px 0; text-align: center;">
+            <img alt="logo" height="29" src="https://www.plip.kr/images/full_logo.png" width="80" />
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <table style="background-color: #FFFFFF; border-radius: 12px; text-align: center; width: 100%">
+              <tbody>
+                <tr>
+                  <td style="padding: 40px 40px 24px 40px;">
+                    <h2 style="color: #121A26; font-size: 20px; font-weight: 700; letter-spacing: -0.015em; margin: 0">회사 가입 승인이 완료되었어요!</h2>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 0 40px">
+                    <p style="color: #384860; line-height: 1.6; margin: 0">{{name}}님의 회사 가입 승인이 완료되었습니다.<br/><b>이제 플립 서비스를 이용하실 수 있어요!</b><br/><b>플립과 함께 올바른 개인정보 관리를 시작해볼까요?</b></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 24px 40px 40px 40px;">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" style="margin: auto">
+                      <tbody>
+                        <tr>
+                          <td style="background-color: #4380F9; border-radius: 8px; cursor: pointer; font-weight: 700; padding: 12px 24px;">
+                            <a style="color: #FFFFFF; text-decoration: none;" href="https://dev.plip.kr/signin" rel="noopener noreferrer" target="_blank">플립 시작하기</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table style="color: #9D9D9D; font-size: 14px; margin-top: 58px; text-align: center; width: 100%;">
+              <tbody>
+                <tr>
+                  <td>
+                    <p style="font-weight: 700; margin: 0 0 8px 0;">플립 Privacy clip, Plip</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p style="margin: 0 0 8px 0;">©2023. TOVDATA Inc. All Rights Reserved.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a class="plip-link" href="https://support.plip.kr/3df57cbd-9405-4031-93c8-0965a9b55247" rel="noopener noreferrer" style="color: #7A7A7A; cursor: pointer; display: inline-block; text-decoration: none;" target="_blank">이용약관</a> | <a class="plip-link" href="https://plip.kr/privacy-policies/1a0cd93a-cbb6-4750-bf12-fede7adfe4cf.html" rel="noopener noreferrer" style="color: #7A7A7A; cursor: pointer; display: inline-block; font-weight: 700; text-decoration: none;" target="_blank">개인정보처리방침</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>
