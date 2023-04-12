@@ -5,7 +5,7 @@ import (
 	"flag"
 	"fmt"
 
-	"workspace/lib"
+	"manage-ses-template/lib"
 )
 
 func main() {
