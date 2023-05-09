@@ -37,11 +37,13 @@ func (storage *S3) UploadFile(ctx context.Context, info Info) string {
 	} else if strings.ToLower(extension) == ".docx" || strings.ToLower(extension) == ".doc" {
 		contentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 	}
-	
+
+	// 키(Key) 생성
+	key := strings.Join([]string{"guide", info.FileName}, "/")
 	// 입력 데이터 가공
 	input := &s3.PutObjectInput{
 		Bucket: aws.String("plip.kr"),
-		Key: aws.String(strings.Join([]string{"guide", info.FileName}, "/")),
+		Key: aws.String(key),
 		Body: bytes.NewReader(data),
 		ContentDisposition: aws.String("attachment"),
 		ContentType: aws.String(contentType),
@@ -53,7 +55,7 @@ func (storage *S3) UploadFile(ctx context.Context, info Info) string {
 		log.Fatalf("[UPLOAD ERROR] %v", err)
 	}
 	// URL 반환
-	return result.Location
+	return strings.Join([]string{"https://plip.kr", *result.Key}, "/")
 }
 
 func NewS3(cfg aws.Config) *S3 {

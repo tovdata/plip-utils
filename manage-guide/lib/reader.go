@@ -23,7 +23,7 @@ type Guide struct {
 	PublishedAt int      `json:"published_at"`
 	Sources     []string `json:"sources"`
 	Title       string   `json:"title"`
-	Url         string   `json:"url,omitempty"`
+	Url         string   `json:"url"`
 }
 
 func ReadGuides(filePath string) []Info {

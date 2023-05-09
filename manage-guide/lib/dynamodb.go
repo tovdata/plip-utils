@@ -2,6 +2,8 @@ package lib
 
 import (
 	"context"
+	"crypto/md5"
+	"encoding/hex"
 	"log"
 	"strconv"
 
@@ -45,6 +47,12 @@ func (db *Dynamodb) BatchWriteItem(ctx context.Context, tableName string, items 
 }
 
 func (db *Dynamodb) WriteItem(ctx context.Context, tableName string, guide Guide) {
+	// MD5 hash
+	hash := md5.New()
+	hash.Write([]byte(guide.Url))
+	// ID 생성
+	id := hex.EncodeToString(hash.Sum(nil))
+
 	// 문자열 슬라이스 변환
 	var sources []types.AttributeValue
 	for _, elem := range guide.Sources {
@@ -53,14 +61,16 @@ func (db *Dynamodb) WriteItem(ctx context.Context, tableName string, guide Guide
 	// 입력 데이터 가공
 	input := &dynamodb.PutItemInput{
 		Item: map[string]types.AttributeValue{
+			"id": 					&types.AttributeValueMemberS{Value: id},
 			"category":     &types.AttributeValueMemberS{Value: guide.Category},
-			"published_at": &types.AttributeValueMemberN{Value: guide.PublishedAt},
+			"published_at": &types.AttributeValueMemberN{Value: strconv.Itoa(guide.PublishedAt)},
 			"sources":      &types.AttributeValueMemberL{Value: sources},
-			"title":        &types.AttributeValueMemberS{Value: item.Title},
-			"url":          &types.AttributeValueMemberS{Value: item.Url},
+			"title":        &types.AttributeValueMemberS{Value: guide.Title},
+			"url":          &types.AttributeValueMemberS{Value: guide.Url},
 		},
 		TableName: aws.String(tableName),
 	}
+
 	// 데이터 저장
 	_, err := db.client.PutItem(ctx, input)
 	// 에러 처리
